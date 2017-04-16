@@ -1,0 +1,22 @@
+{
+  "name": "platzigram",
+  "version": "0.9.0",
+  "description": "Front end aplicación platzigram",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anahiza/platzigram-2.git"
+  },
+  "author": "I.S.C. Anahi Zentella Aguirre",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anahiza/platzigram-2/issues"
+  },
+  "homepage": "https://github.com/anahiza/platzigram-2#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
