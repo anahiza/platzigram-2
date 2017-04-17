@@ -4,7 +4,8 @@
   "description": "Front end aplicación platzigram",
   "main": "server.js",
   "scripts": {
-    "build": "gulp"
+    "build": "gulp",
+    "start": "gulp watch | node server.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,8 @@
     "gulp-rename": "^1.2.2",
     "materialize-css": "^0.98.2",
     "page": "^1.7.1",
-    "pug": "^2.0.0-beta11"
+    "pug": "^2.0.0-beta11",
+    "yo-yo": "^1.4.0"
   },
   "devDependencies": {
     "babelify": "^7.3.0",
@@ -31,9 +33,5 @@
     "gulp-sass": "^3.1.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.9.0"
-  },
-  "scripts":{
-    "build":"gulp",
-    "start":"gulp watch | node server.js"
   }
 }

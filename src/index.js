@@ -1,12 +1,12 @@
 var page = require('page');
-var main = document.getElementById('main-container')
+var yo = require('yo-yo')
 
 page('/', function(ctx, next){
-  main.innerHTML='home'
 })
 
 page('/signup', function(ctx, next){
-  main.innerHTML='signup<a href="/">Home</a>'
+  var main = document.getElementById('main-container');
+  
 })
 
 page.start()
