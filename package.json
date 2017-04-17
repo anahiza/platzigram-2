@@ -21,6 +21,7 @@
     "express": "^4.15.2",
     "gulp-rename": "^1.2.2",
     "materialize-css": "^0.98.2",
+    "page": "^1.7.1",
     "pug": "^2.0.0-beta11"
   },
   "devDependencies": {
