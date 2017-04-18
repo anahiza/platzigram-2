@@ -8,8 +8,8 @@ var box = yo`<div class="col s12 m7">
                     <form action="" class="signup-form">
                       <h2>Regístrate para ver fotos de tus amigos estudiando en Platzi</h2>
                       <div class="section">
-                        <a href="" class="btn btn-fb hide-on-small-only">Iniciar sesión con Facebook</a>
-                        <a href="" class="btn btn-fb hide-on-med-and-up">Iniciar Sesión</a>
+                        <a href="" class="btn btn-fb hide-on-small-only"><i class="fa fa-facebook-official" aria-hidden="true"></i>Iniciar sesión con Facebook</a>
+                        <a href="" class="btn btn-fb hide-on-med-and-up"><i class="fa fa-facebook-official" aria-hidden="true"></i>Iniciar Sesión</a>
                       </div>
                       <div class="divider"></div>
                       <div class="section">
