@@ -99,10 +99,25 @@ $avatar-size: 48px;
   font-size: 30px;
 }
 
-.card .fa-heart{
+.card .fa-heart-o{
   color: $secondary-color;
 }
 
 .card .username{
   color: $secondary-color;
+}
+
+.card .fa-heart{
+  color:red;
+  display: none;
+}
+
+
+.card.liked{
+  .fa-heart{
+    display: block;
+  }
+  .fa-heart-o{
+    display: none;
+  }
 }
