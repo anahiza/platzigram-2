@@ -71,3 +71,38 @@ body{
 .landing {
   margin: 30px auto;
 }
+
+$avatar-size: 48px;
+
+.avatar{
+  max-height: $avatar-size;
+  height: $avatar-size;
+  border-radius: 50%;
+  float: left;
+  margin-right: 12px;
+}
+
+.card small.time{
+  line-height: $avatar-size;
+}
+
+.card p{
+  padding: 20px 0;
+}
+
+.card .likes {
+  line-height: 30px;
+  margin-left: 12px;
+}
+
+.card i{
+  font-size: 30px;
+}
+
+.card .fa-heart{
+  color: $secondary-color;
+}
+
+.card .username{
+  color: $secondary-color;
+}
