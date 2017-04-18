@@ -1,17 +1,5 @@
 var yo = require('yo-yo')
-
-if (!window.Intl){
-  window.Intl=require('Intl')
-  require('intl/locale-data/jsonp/en-US.js')
-  require('intl/locale-data/jsonp/es.js')
-}
-
-var IntlRelativeFormat = window.IntlRelativeFormat=require('intl-relativeformat');
-
-require('intl-relativeformat/dist/locale-data/en.js');
-require('intl-relativeformat/dist/locale-data/es.js');
-
-var rf = new IntlRelativeFormat('es')
+var translate = require('../translate')
 
 module.exports = function pictureCard( pic) {
 var el;
@@ -28,11 +16,11 @@ function render(picture){
                 <img src="${picture.user.avatar}" alt="" class="avatar" />
                 <span class="username">${picture.user.username}</span>
               </a>
-              <small class="right time">${rf.format(picture.createdAt)}</small>
+              <small class="right time">${translate.date.format(picture.createdAt)}</small>
               <p>
                 <a href="" class = "left" onclick=${like.bind(null, true)}><i class="fa fa-heart-o" aria-hidden="true"></i></a>
                 <a href="" class = "left" onclick=${like.bind(null, false)}><i class="fa fa-heart" aria-hidden="true"></i></a>
-                <span class="left likes">${picture.likes} me gusta</span>
+                <span class="left likes">${translate.message('likes', {likes: picture.likes})}</span>
 
               </p>
             </div>            
