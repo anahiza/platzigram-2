@@ -1,7 +1,7 @@
 module.exports={
 	'likes':'{likes, number} me gusta',
 	'logout': 'Salir',
-	'english':'Ingles',
+	'english':'Inglés',
 	'spanish': 'Español',
 	'signup.subheading': 'Registrate para ver fotos de tus amigos estudiando en Platzi',
 	'signup.facebook':'Iniciar sesión con Facebook',
