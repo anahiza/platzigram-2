@@ -1,5 +1,5 @@
 if (!window.Intl){
-  window.Intl=require('Intl')
+  window.Intl=require('intl')
   require('intl/locale-data/jsonp/en-US.js')
   require('intl/locale-data/jsonp/es.js')
 }
@@ -30,5 +30,3 @@ module.exports = {
   date: new IntlRelativeFormat(locale)
 
 }
-
-
