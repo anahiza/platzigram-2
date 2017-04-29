@@ -2,7 +2,7 @@ var yo = require('yo-yo')
 var layout = require('../layout')
 var picture = require('../picture-card')
 var translate = require('../translate')
-var superagent = require('superagent')
+var request=require('superagent');
 
 
 module.exports = function(pictures){
@@ -36,23 +36,25 @@ function toggleButtons() {
 
 function cancel(){
   toggleButtons()
-  document.getElementById('formUpload').reset();
+  document.getElementById('form-upload').reset();
 }
 
 function onchange(){
   toggleButtons()
 }
 
-function onsumbit(ev){
-    ev.preventDefault()
-    var data = new FormData(this)
-    superagent
-          .post('/api/pictures')
-          .send(data)
-          .end(function(err,res){
-            console.log(arguments);
-          })
-    }
+function onsubmit(ev){
+  ev.preventDefault();
+  var data= new FormData(this);
+  request
+    .post('/api/pictures')
+    .send(data)
+    .end(function(err,res){
+      console.log(arguments);
+    })
+
+
+}
 
   return layout(el)
 }
