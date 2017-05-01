@@ -7,7 +7,7 @@ var request = require('superagent')
 var header = require('../header')
 var axios = require('axios')
 
-page('/', header, asyncLoad, function(ctx, next){
+page('/', header, loading, asyncLoad, function(ctx, next){
   title= 'Platzigram'
   var main = document.getElementById('main-container');
 
@@ -60,4 +60,12 @@ async function asyncLoad(ctx, next){
       }catch(err){
         return console.log(err)
       }
+}
+
+
+async function loading(ctx, next){
+  var el=document.createElement('div')
+  el.classList.add('loader')
+  document.getElementById('main-container').appendChild(el)
+  next()
 }
