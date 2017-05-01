@@ -6,9 +6,17 @@ import template from './template'
 
 page('/:username', header, loadUser, function (ctx, next) {
   var main = document.getElementById('main-container')
-  title('Platzigram - '+ctx.params.username)
+  title(`Platzigram - ${ctx.params.username}`)
   empty(main).appendChild(template(ctx.user))
 })
+
+page('/:username/:id', header, loadUser, function (ctx, next) {
+  var main = document.getElementById('main-container')
+  title(`Platzigram - ${ctx.params.username}`)
+  empty(main).appendChild(template(ctx.user))
+  $(`#modal${ctx.params.id}`).openModal()
+})
+
 
 async function loadUser(ctx, next){
   try{
