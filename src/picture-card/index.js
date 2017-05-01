@@ -5,14 +5,14 @@ module.exports = function pictureCard( pic) {
 var el;
 
 function render(picture){
-  
+
   return yo`
           <div class="card ${picture.liked ? 'liked' :''}">
             <div class="card-image">
               <img src="${picture.url}">
             </div>
             <div class="card-content">
-              <a href="/user/${picture.user.username}" class="card-title">
+              <a href="/${picture.user.username}" class="card-title">
                 <img src="${picture.user.avatar}" alt="" class="avatar" />
                 <span class="username">${picture.user.username}</span>
               </a>
@@ -23,8 +23,8 @@ function render(picture){
                 <span class="left likes">${translate.message('likes', {likes: picture.likes})}</span>
 
               </p>
-            </div>            
-          </div>` 
+            </div>
+          </div>`
 }
 
 
@@ -39,5 +39,3 @@ function render(picture){
   el=render(pic)
   return el
   }
-
-            
