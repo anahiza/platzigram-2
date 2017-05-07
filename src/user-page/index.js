@@ -14,7 +14,12 @@ page('/:username/:id', header, loadUser, function (ctx, next) {
   var main = document.getElementById('main-container')
   title(`Platzigram - ${ctx.params.username}`)
   empty(main).appendChild(template(ctx.user))
-  $(`#modal${ctx.params.id}`).openModal()
+  $(`#modal${ctx.params.id}`).openModal({
+    dismissible: true,
+    complete: function(){
+      page(`/${ctx.params.username}`)
+    }
+  })
 })
 
 

@@ -29,11 +29,11 @@ export default function userPageTemplate(user){
 
             <div id="modal${picture.id}" class="modal modal-fixed-footer">
               <div class="modal-content">
-                <img src"${picture.src}" class="responsive-img"/>
+                <img src="${picture.src}" class="responsive-img"/>
               </div>
               <div class="modal-footer">
                 <div class="btn btn-flat likes">
-                  <i class="fa fa-heart"></i> ${translate.message('likes', {likes:picture.likes})} 
+                  <i class="fa fa-heart"></i> ${translate.message('likes', {likes:picture.likes})}
                   </div>
               </div>
             </div>
