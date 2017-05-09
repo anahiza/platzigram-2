@@ -7,11 +7,34 @@ var request=require('superagent');
 
 module.exports = function(pictures){
   var el = yo`<div class="container timeline">
+
+  <!-- Modal Structure -->
+  <div id="modalCamara" class="modal center-align">
+    <div class="modal-content">
+      <div class="camara-picture" id="camara-input"></div>       
+      <div class="camara-picture hide" id="picture-preview"></div>      
+    </div>
+    <div class="modal-footer">
+      <button class="waves-effect waves-light btn" id="shoot">
+        <i class="fa fa-camera" aria-hidden="true"></i>
+      </button>      
+      <button class="waves-effect waves-light btn cyan hide" id="upload-button">
+        <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+      </button>     
+       <button class="waves-effect waves-light btn red hide" id="cancelPicture">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col s12 m10 offset-m1 l8 offset-l2 center-align">
       <form enctype="multipart/form-data" class="form-upload" id="form-upload" onsubmit=${onsubmit}>
+        <a href="#modalCamara" class="btn waves-effect waves-light modal-trigger">
+          <i class="fa fa-camera" aria-hidden="true"></i>
+        </a>
        <div id = "fileName" class="fileUpload btn btn-flat cyan">
-         <span><i class="fa fa-camera" aria-hidden="true"></i>${translate.message('upload-picture')}</span>
+         <span><i class="fa fa-cloud-upload" aria-hidden="true"></i>${translate.message('upload-picture')}</span>
          <input name="picture" id="file" type="file" class="upload" onchange=${onchange}/>
        </div>
        <button id="btnUpload" type = "submit" class="btn btn-flat cyan hide">${translate.message('upload')}</button>
@@ -20,7 +43,7 @@ module.exports = function(pictures){
     </div>
   </div>
   <div class="row">
-    <div class="col s12 m10 offset-m1 l6 offset-l3">
+    <div class="col s12 m10 offset-m1 l6 offset-l3" id="picture-cards">
       ${pictures.map( function( pic ){
         return picture(pic)
       })}
