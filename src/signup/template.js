@@ -6,7 +6,7 @@ var box = yo`<div class="col s12 m7">
                 <div class="row">
                   <div class="signup-box">
                     <h1 class="platzigram">Platzigram</h1>
-                    <form action="" class="signup-form">
+                    <form action="/signup" class="signup-form" method="POST">
                       <h2>${translate.message('signup.subheading')}</h2>
                       <div class="section">
                         <a href="" class="btn btn-fb hide-on-small-only"><i class="fa fa-facebook-official" aria-hidden="true"></i>${translate.message('signup.facebook')}</a>

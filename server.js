@@ -8,6 +8,9 @@ var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
 var expressSession = require('express-session')
 var passport = require('passport')
+var platzigram_client=require('platzigram-client')
+var auth = require('./auth')
+
 
 var config = require('./config')
 var s3 = new aws.S3({
@@ -39,10 +42,12 @@ var storage = multerS3({
 
 var upload = multer({ storage: storage }).single('picture');
 
+var client = platzigram_client.createClient(config.client)
+
 app.set(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(cookieParser())
-app.use(expressSesion({
+app.use(expressSession({
   secret: config.secret,
   resave: false,
   saveUnitialized: false
@@ -52,7 +57,11 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.set('view engine', 'pug')
 
-app.use(express.static('public'));
+app.use(express.static('public'))
+
+passport.use(auth.localStrategy)
+passport.deserializeUser(auth.deserializeUser)
+passport.serializeUser(auth.serializeUser)
 
 app.get('/', function(req, res){
   res.render('index', {title: 'Platzigram'})
@@ -62,9 +71,32 @@ app.get('/signup', function(req, res){
   res.render('index', {title: 'Platzigram - Sign up'})
 })
 
+app.post('/signup', function(req, res){
+  var user = req.body
+  client.saveUser(user, function(err, usr){
+    if (err) return res.status(500).send(err.message)
+    res.redirect('/signin')
+  })
+
+})
+
 app.get('/signin', function(req, res){
   res.render('index', {title: 'Platzigram - Sign in'})
 })
+
+app.post('/login', passport.authenticate('local', {
+  sucessRedirect:'/',
+  failureRedirect: '/signin'
+})
+)
+
+function ensureAuth(req, res, next){
+  if (req.isAutheticated()){
+    return next()
+  }
+  res.status(401).send({error: 'not authenticated'})
+
+}
 
 app.get('/api/pictures', function(req,res){
 
@@ -94,7 +126,7 @@ app.get('/api/pictures', function(req,res){
   setTimeout(() => res.send(pictures),1000)
 })
 
-app.post('/api/pictures', function(req, res){
+app.post('/api/pictures', ensureAuth, function(req, res){
   upload(req,res, function(err){
       console.log(s3)
         if (err){
