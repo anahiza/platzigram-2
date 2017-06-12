@@ -4,6 +4,10 @@ var multer  = require('multer')
 var ext = require('file-extension')
 var aws =require('aws-sdk')
 var multerS3 = require('multer-s3')
+var cookieParser = require('cookie-parser')
+var bodyParser = require('body-parser')
+var expressSession = require('express-session')
+var passport = require('passport')
 
 var config = require('./config')
 var s3 = new aws.S3({
@@ -35,6 +39,17 @@ var storage = multerS3({
 
 var upload = multer({ storage: storage }).single('picture');
 
+app.set(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(cookieParser())
+app.use(expressSesion({
+  secret: config.secret,
+  resave: false,
+  saveUnitialized: false
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
 app.set('view engine', 'pug')
 
 app.use(express.static('public'));
