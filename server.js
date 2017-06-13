@@ -10,6 +10,7 @@ var expressSession = require('express-session')
 var passport = require('passport')
 var platzigram_client=require('platzigram-client')
 var auth = require('./auth')
+var port = process.env.PORT || 5050
 
 
 var config = require('./config')
@@ -89,6 +90,13 @@ app.post('/login', passport.authenticate('local', {
   failureRedirect: '/signin'
 })
 )
+
+app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}))
+
+app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+  sucessRedirect:'/',
+  failureRedirect: '/signin'
+}))
 
 function ensureAuth(req, res, next){
   if (req.isAutheticated()){
@@ -186,7 +194,7 @@ app.get('/:username/:id', function(req, res) {
   res.render('index', {title: `Platzigram - ${req.params.username}`})
 })
 
-app.listen(3000, function (err) {
+app.listen(port, function (err) {
   if(err) return console.log(err.message), process.exit(1);
-  console.log("Platzigram escuchando en el puerto 3000")
+  console.log("Platzigram escuchando en el puerto "+port)
 })

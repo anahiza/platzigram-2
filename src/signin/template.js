@@ -8,8 +8,8 @@ var box = yo`<div class="col s12 m7">
                     <h1 class="platzigram">Platzigram</h1>
                     <form action="/login" class="signup-form" method='POST'>
                       <div class="section">
-                        <a href="" class="btn btn-fb hide-on-small-only">${translate.message('signup.facebook')}</a>
-                        <a href="" class="btn btn-fb hide-on-med-and-up">${translate.message('signup.text')}</a>
+                        <a href="/auth/facebook" rel="external" class="btn btn-fb hide-on-small-only">${translate.message('signup.facebook')}</a>
+                        <a href="/auth/facebook" rel="external" class="btn btn-fb hide-on-med-and-up">${translate.message('signup.text')}</a>
                       </div>
                       <div class="divider"></div>
                       <div class="section">
