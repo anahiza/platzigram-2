@@ -8,8 +8,9 @@ var header = require('../header')
 var axios = require('axios')
 var Webcam = require('webcamjs')
 var picture = require('../picture-card')
+var utils  = require('../utils')
 
-page('/', header, loading, asyncLoad, function(ctx, next){
+page('/', utils.loadAuth, header, loading, asyncLoad, function(ctx, next){
   title= 'Platzigram'
   var main = document.getElementById('main-container');
   empty(main).appendChild(template(ctx.pictures))
@@ -37,7 +38,7 @@ page('/', header, loading, asyncLoad, function(ctx, next){
             width: 320,
             height: 240,
         });
-        
+
         Webcam.attach('#camara-input');
         shootButton.click((ev)=>{
           Webcam.snap((data_uri) => {

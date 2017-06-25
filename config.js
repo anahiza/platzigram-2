@@ -16,8 +16,8 @@ const config={
   auth:{
     facebook:{
       clientID: process.env.FACEBOOK_CLIENT_ID,
-      cliente: process.env.FCEBOOK_CLIENT_SECRET,
-      callbackURL: 'http://platigram.com/auth/facebook/callback'
+      clienteSecret: process.env.FACEBOOK_CLIENT_SECRET,
+      callbackURL: 'http://platigram.com/auth/facebook/callback/'
     }
   }
 }
@@ -28,7 +28,7 @@ if (process.env.NODE_ENV !== 'production') {
     users: 'http://localhost:5001',
     auth: 'http://localhost:5002'
   }
-  config.auth.facebook.callbackURL: 'http://platigram.test:5050/auth/facebook/callback'    
+  config.auth.facebook.callbackURL= 'http://platzigram.test:5050/auth/facebook/callback/'
 }
 
 module.exports = config;

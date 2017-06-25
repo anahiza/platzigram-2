@@ -61,6 +61,7 @@ app.set('view engine', 'pug')
 app.use(express.static('public'))
 
 passport.use(auth.localStrategy)
+passport.use(auth.facebookStrategy)
 passport.deserializeUser(auth.deserializeUser)
 passport.serializeUser(auth.serializeUser)
 
@@ -99,12 +100,24 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', {
 }))
 
 function ensureAuth(req, res, next){
-  if (req.isAutheticated()){
+  if (req.isAuthenticated()){
     return next()
   }
   res.status(401).send({error: 'not authenticated'})
 
 }
+
+app.get('/whoami', function(req, res){
+  if (req.isAuthenticated()){
+    return res.json(req.user)
+  }
+  res.json({auth:false})
+})
+
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/')
+})
 
 app.get('/api/pictures', function(req,res){
 

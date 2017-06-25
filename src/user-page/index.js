@@ -3,8 +3,9 @@ import header from '../header'
 import title from 'title'
 import empty from 'empty-element'
 import template from './template'
+import utils from '../utils'
 
-page('/:username', header, loadUser, function (ctx, next) {
+page('/:username', utils.loadAuth, header, loadUser, function (ctx, next) {
   var main = document.getElementById('main-container')
   title(`Platzigram - ${ctx.params.username}`)
   empty(main).appendChild(template(ctx.user))

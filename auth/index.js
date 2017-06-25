@@ -35,19 +35,18 @@ exports.facebookStrategy = new FacebookStrategy({
   }
 
   findOrCreate(userProfile, (err, user)=>{
-    if (err){ 
+    if (err){
       return done(err)
     }
 
     jwt.sign({userId: user.username}, config.secret, {},(e, token)=>{
       if(e) return done(e)
-        user.token = token
+
+      user.token = token
       return done(null, user)
     })
 
   })
-
-
 
   function findOrCreate(user, callback){
     client.getUser(user.username, (err, usr)=>{
