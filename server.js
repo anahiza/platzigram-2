@@ -120,31 +120,10 @@ app.get('/logout', function(req, res){
 })
 
 app.get('/api/pictures', function(req,res){
-
-  var pictures=[
-    {
-      user:{
-        username:'Anahi',
-        avatar:'https://lh3.googleusercontent.com/-vHUbokKYy8E/AAAAAAAAAAI/AAAAAAAACIo/xcEEOpJnzfI/s60-p-rw-no/photo.jpg'
-      },
-      url:'https://images.pexels.com/photos/214221/pexels-photo-214221.jpeg',
-      likes:0,
-      liked: false,
-      createdAt: +new Date()
-    },
-    {
-      user:{
-        username:'Anahi',
-        avatar:'https://lh3.googleusercontent.com/-vHUbokKYy8E/AAAAAAAAAAI/AAAAAAAACIo/xcEEOpJnzfI/s60-p-rw-no/photo.jpg'
-      },
-      url:'https://image.freepik.com/free-photo/working-with-a-coffee_1112-145.jpg',
-      likes:156,
-      liked: true,
-      createdAt: new Date().setDate(new Date().getDate()-10)
-
-    }
-  ]
-  setTimeout(() => res.send(pictures),1000)
+  client.listPictures(function(err, pictures){
+    if (err) return res.send([])
+    res.send(pictures)
+  })
 })
 
 app.post('/api/pictures', ensureAuth, function(req, res){
@@ -153,7 +132,23 @@ app.post('/api/pictures', ensureAuth, function(req, res){
         if (err){
             return res.status(500).send("Error uploading file"+err);
         }
-        res.status(200).send("File uploaded");
+
+        var user = req.user;
+        var token = req.user.token;
+        var username = req.user.username
+        var src = req.file.location;
+        client.savePicture({
+          src: src,
+          userId: username,
+          user: {
+            username: username,
+            name: user.name
+          }
+        }, token, function(err, img){
+          if (err) return res.status(500).send(err.message)
+          res.status(200).send(`File uploaded: ${req.file.location}`);
+        })
+
 
     })
 })
