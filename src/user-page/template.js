@@ -11,8 +11,8 @@ export default function userPageTemplate(user){
             <img src="${user.avatar}" class= "responsive-img circle" />
           </div>
           <div class="col s12 m10 offset-m1 l6 left-align">
-            <h2 class="hide-on-large-only center-align">${user.username}</h2>
-            <h2 class="hide-on-med-and-down left-align">${user.username}</h2>
+            <h2 class="hide-on-large-only center-align">${user.name}</h2>
+            <h2 class="hide-on-med-and-down left-align">${user.name}</h2>
           </div>
         </div>
       </div>
@@ -23,7 +23,7 @@ export default function userPageTemplate(user){
             <a href="/${user.username}/${picture.id}" class="picture-container">
               <img src="${picture.src}" class="picture" />
               <div class="likes">
-                <i class="fa fa-heart"></i>${picture.likes}
+                <i class="fa fa-heart"></i>${picture.likes ||0}
               </div>
             </a>
 
@@ -33,7 +33,7 @@ export default function userPageTemplate(user){
               </div>
               <div class="modal-footer">
                 <div class="btn btn-flat likes">
-                  <i class="fa fa-heart"></i> ${translate.message('likes', {likes:picture.likes})}
+                  <i class="fa fa-heart"></i> ${translate.message('likes', {likes:picture.likes||0})}
                   </div>
               </div>
             </div>

@@ -154,44 +154,11 @@ app.post('/api/pictures', ensureAuth, function(req, res){
 })
 
 app.get('/api/user/:username', function (req, res) {
-  var user=
-		{
-			username: 'Anahi',
-			avatar: 'https://pbs.twimg.com/profile_images/308830576/hand_400x400.jpg',
-			pictures: [
-				{
-					id:1,
-					src:'https://image.freepik.com/foto-gratis/trabajando-desde-la-cama_385-19324222.jpg',
-					likes: Math.floor((Math.random()*100)+1)
-				},
-				{
-					id:2,
-					src:'https://image.freepik.com/vector-gratis/programador-en-el-ordenador_23-2147505689.jpg',
-					likes:Math.floor((Math.random()*100)+1)
-				},
-				{
-					id:3,
-					src:'https://image.freepik.com/vector-gratis/areas-de-trabajo-en-e-business_23-2147499433.jpg',
-					likes:34
-				},
-				{
-					id:4,
-					src:'https://image.freepik.com/foto-gratis/trabajando-en-una-tableta_1112-167.jpg',
-					likes:6
-				},
-				{
-					id:5,
-					src:'https://image.freepik.com/foto-gratis/trabajando-en-una-tableta_1112-167.jpg',
-					likes:5
-				},
-				{
-					id:6,
-					src:'https://igcdn-photos-a-a.akamaihd.net/hphotos-ak-xaf1/t51.2885-15/e35/12904985_475045592684864_301128546_n.jpg?ig_cache_key=MTIyMzQwNjg2NDA5NDE2MDM5NA%3D%3D.2',
-					likes:0
-				}
-			]
-		}
-	res.send(user);
+  var username = req.params.username;
+  client.getUser(username, function(err, user){
+    if (err) return res.status(404).send({error: 'user not found'})
+    res.send(user);
+  })
 })
 
 app.get('/:username', function(req, res) {
